@@ -1,15 +1,15 @@
 import React from 'react'
 import SpotifyPlayer from 'react-spotify-web-playback'
 
-function Player({ accessToken, trackUri }) {
+function Player(props) {
 
-    if (!accessToken) return null
+    if (!props.accessToken) return null
     return (
         <div>
             <SpotifyPlayer
-                token={accessToken}
+                token={props.accessToken}
                 showSaveIcon
-                //uris={trackUri ? [trackUri] : []}
+                //uris={props.trackUri ? [props.trackUri] : []}
                 uris={['spotify:artist:6HQYnRM4OzToCYPpVBInuU']}
             />
         </div>
