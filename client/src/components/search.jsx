@@ -1,4 +1,49 @@
+import React from 'react';
+import { useState } from 'react';
+import axios from 'axios';
+import TrackSearchResult from './TrackSearchResult';
+
 function Search(props) {
+  const [searchKey, setSearchKey] = useState('');
+  const [tracks, setTrack] = useState([]);
+
+  function chooseTrack(track) {
+    setSearchKey('');
+  }
+
+  const searchArtists = async (e) => {
+    e.preventDefault();
+    console.log();
+    const { data } = await axios.get('https://api.spotify.com/v1/search', {
+      headers: {
+        Authorization: `Bearer ${props.accessToken}`,
+      },
+      params: {
+        q: searchKey,
+        type: 'track',
+      },
+    });
+
+    setTrack(
+      data.tracks.items.map((track) => {
+        const smallestAlbumImage = track.album.images.reduce(
+          (smallest, image) => {
+            if (image.height < smallest.height) return image;
+            return smallest;
+          },
+          track.album.images[0]
+        );
+
+        return {
+          artist: track.artists[0].name,
+          title: track.name,
+          uri: track.uri,
+          albumUrl: smallestAlbumImage.url,
+        };
+      })
+    );
+  };
+
   return (
     <div className="search">
       <div className="header">
@@ -25,13 +70,22 @@ function Search(props) {
           type="text"
           className="search__form-input"
           placeholder="Song..."
+          onChange={(e) => setSearchKey(e.target.value)}
         />
+        <button type={'submit'} onClick={searchArtists} hidden>
+          Search
+        </button>
       </form>
       <div className="search__history">
-        <p className="search__history-item">Song name</p>
-        <p className="search__history-item">Song name</p>
-        <p className="search__history-item">Song name</p>
-        <p className="search__history-item">Song name</p>
+        {tracks.map((track) => (
+          <TrackSearchResult
+            track={track}
+            key={track.uri}
+            uri={track.uri}
+            chooseTrack={chooseTrack}
+            setUri={props.setUri}
+          />
+        ))}
       </div>
       <button className="clearHistory">Clear history</button>
     </div>
