@@ -5,17 +5,23 @@ import Navigation from './nav';
 import FullPlayer from './fullPlayer';
 import SignIn from './signIn';
 import SignUp from './signUp';
-import MiniPlayer from './miniPlayer';
 import LikedTracks from './likedTracks';
 import PlayLists from './playlists';
 import { useState } from 'react';
+import useAuth from '../useAuth';
+import Player from './Player';
 
-function Main() {
+function Main({ code }) {
   const [tab, setTab] = useState('home');
   const [signIn, setSignIn] = useState(false);
   const [signUp, setSignUp] = useState(false);
   const [player, setPlayer] = useState(false);
   const [playList, setPlayList] = useState('');
+  const [uri, setUri] = useState('');
+
+  const accessToken = useAuth(code);
+
+  console.log(accessToken);
 
   function changeTab(e) {
     const parent = e.target.parentElement.parentElement;
@@ -60,7 +66,6 @@ function Main() {
   }
 
   function showPlayList(e) {
-    console.log(e.target.id);
     setPlayList(e.target.id);
     setTab('');
   }
@@ -68,7 +73,13 @@ function Main() {
   return (
     <div className="wrapper">
       {tab === 'home' && <Home showSign={showSignIn} />}
-      {tab === 'search' && <Search showSign={showSignIn} />}
+      {tab === 'search' && (
+        <Search
+          showSign={showSignIn}
+          accessToken={accessToken}
+          setUri={setUri}
+        />
+      )}
       {tab === 'library' && (
         <Library showSign={showSignIn} showPlayList={showPlayList} />
       )}
@@ -81,7 +92,7 @@ function Main() {
       )}
       {signUp && <SignUp loseSigns={closeSigns} closeSign={closeSignUp} />}
       {player && <FullPlayer togglePlayer={togglePlayer} />}
-      <MiniPlayer togglePlayer={togglePlayer} />
+      <Player accessToken={accessToken} uri={uri} />
       {playList === 'likedTrack' && (
         <LikedTracks togglePlaysLists={togglePlaysLists} />
       )}

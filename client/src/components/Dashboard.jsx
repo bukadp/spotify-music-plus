@@ -1,24 +1,22 @@
-import React from 'react';
-import useAuth from '../useAuth';
-import Player from './Player';
-import TrackSearch from './TrackSearch'
+// import React from 'react';
+// import useAuth from '../useAuth';
+// import Player from './Player';
+// import Search from './search';
 
-function Dashboard({ code }) {
-    const accessToken = useAuth(code)
+// function Dashboard({ code }) {
+//   const accessToken = useAuth(code);
 
- 
+//   return (
+//     <div>
+//       <div>
+//         <Search accessToken={accessToken} />
+//       </div>
+//       <div>
+//         <Player accessToken={accessToken} />
+//       </div>
+//     </div>
+//   );
+// }
 
-    return (
-        <div>
-            <div>
-                <TrackSearch accessToken={accessToken}/>
-            </div>
-            <div>
-                <Player accessToken={accessToken} />
-            </div>
-        </div>
-    )
-}
-
-export default Dashboard
-//trackUri={playingTrack?.uri}
+// export default Dashboard;
+// //trackUri={playingTrack?.uri}
