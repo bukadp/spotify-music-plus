@@ -4,26 +4,31 @@ import axios from 'axios';
 import TrackSearchResult from './TrackSearchResult';
 
 function Search(props) {
-  const [searchKey, setSearchKey] = useState('');
+  //const [searchKey, setSearchKey] = useState('');
   const [tracks, setTrack] = useState([]);
 
-  function chooseTrack(track) {
+  /*function chooseTrack(track) {
     setSearchKey('');
+  }*/
+
+  const onSearchChange = (e) => {
+    const searchText = e.target.value
+    props.onSearchChange(searchText)
   }
 
   const searchArtists = async (e) => {
     e.preventDefault();
-    console.log();
     const { data } = await axios.get('https://api.spotify.com/v1/search', {
       headers: {
         Authorization: `Bearer ${props.accessToken}`,
       },
       params: {
-        q: searchKey,
+        q: props.searchPage.newSearchText,
         type: 'track',
       },
     });
-
+    console.log(data);
+    //debugger;
     setTrack(
       data.tracks.items.map((track) => {
         const smallestAlbumImage = track.album.images.reduce(
@@ -33,7 +38,7 @@ function Search(props) {
           },
           track.album.images[0]
         );
-
+        //debugger;
         return {
           artist: track.artists[0].name,
           title: track.name,
@@ -70,7 +75,9 @@ function Search(props) {
           type="text"
           className="search__form-input"
           placeholder="Song..."
-          onChange={(e) => setSearchKey(e.target.value)}
+          onChange={onSearchChange}
+          value={props.searchPage.newSearchText}
+          //onChange={(e) => setSearchKey(e.target.value)}
         />
         <button type={'submit'} onClick={searchArtists} hidden>
           Search
@@ -82,7 +89,7 @@ function Search(props) {
             track={track}
             key={track.uri}
             uri={track.uri}
-            chooseTrack={chooseTrack}
+            //chooseTrack={chooseTrack}
             setUri={props.setUri}
           />
         ))}
