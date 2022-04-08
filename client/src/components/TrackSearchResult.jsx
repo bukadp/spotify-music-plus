@@ -2,10 +2,11 @@ import React from 'react';
 
 function TrackSearchResult(props) {
   function handlePlay() {
-    props.chooseTrack(props.track);
+    //props.chooseTrack(props.track);
     props.setUri(props.uri);
   }
 
+  
   return (
     <div
       style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}

@@ -1,5 +1,4 @@
 import Home from './home';
-import Search from './search';
 import Library from './library';
 import Navigation from './nav';
 import FullPlayer from './fullPlayer';
@@ -10,6 +9,7 @@ import PlayLists from './playlists';
 import { useState } from 'react';
 import useAuth from '../useAuth';
 import Player from './Player';
+import SearchContainer from './SearchContainer';
 
 function Main({ code }) {
   const [tab, setTab] = useState('home');
@@ -18,10 +18,13 @@ function Main({ code }) {
   const [player, setPlayer] = useState(false);
   const [playList, setPlayList] = useState('');
   const [uri, setUri] = useState('');
+  // const tab = {
+  //   home: 'home',
+  //   search: 'search',
+  //   library: 'library',
+  // };
 
   const accessToken = useAuth(code);
-
-  console.log(accessToken);
 
   function changeTab(e) {
     const parent = e.target.parentElement.parentElement;
@@ -74,7 +77,7 @@ function Main({ code }) {
     <div className="wrapper">
       {tab === 'home' && <Home showSign={showSignIn} />}
       {tab === 'search' && (
-        <Search
+        <SearchContainer
           showSign={showSignIn}
           accessToken={accessToken}
           setUri={setUri}
