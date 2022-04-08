@@ -15,6 +15,7 @@ function Player(props) {
         token={props.accessToken}
         showSaveIcon
         uris={[props.uri]}
+        autoPlay={true}
         callback={(state) => {
           if (!state.isPlaying) setPlay(false);
         }}

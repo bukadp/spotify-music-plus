@@ -1,53 +1,20 @@
 import React from 'react';
 import { useState } from 'react';
-import axios from 'axios';
 import TrackSearchResult from './TrackSearchResult';
+import searchArtists from './searchArtist';
 
 function Search(props) {
-  //const [searchKey, setSearchKey] = useState('');
   const [tracks, setTrack] = useState([]);
 
-  /*function chooseTrack(track) {
-    setSearchKey('');
-  }*/
-
   const onSearchChange = (e) => {
-    const searchText = e.target.value
-    props.onSearchChange(searchText)
-  }
-
-  const searchArtists = async (e) => {
-    e.preventDefault();
-    const { data } = await axios.get('https://api.spotify.com/v1/search', {
-      headers: {
-        Authorization: `Bearer ${props.accessToken}`,
-      },
-      params: {
-        q: props.searchPage.newSearchText,
-        type: 'track',
-      },
-    });
-    console.log(data);
-    //debugger;
-    setTrack(
-      data.tracks.items.map((track) => {
-        const smallestAlbumImage = track.album.images.reduce(
-          (smallest, image) => {
-            if (image.height < smallest.height) return image;
-            return smallest;
-          },
-          track.album.images[0]
-        );
-        //debugger;
-        return {
-          artist: track.artists[0].name,
-          title: track.name,
-          uri: track.uri,
-          albumUrl: smallestAlbumImage.url,
-        };
-      })
-    );
+    const searchText = e.target.value;
+    props.onSearchChange(searchText);
   };
+
+  function handlerSearchArtist(event) {
+    event.preventDefault();
+    searchArtists(props, setTrack);
+  }
 
   return (
     <div className="search">
@@ -79,7 +46,7 @@ function Search(props) {
           value={props.searchPage.newSearchText}
           //onChange={(e) => setSearchKey(e.target.value)}
         />
-        <button type={'submit'} onClick={searchArtists} hidden>
+        <button type={'submit'} onClick={handlerSearchArtist} hidden>
           Search
         </button>
       </form>

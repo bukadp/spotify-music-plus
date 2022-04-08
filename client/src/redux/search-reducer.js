@@ -19,8 +19,6 @@ const searchReducer = (state = initialState, action) => {
                 ...state,
                 newSearchText: action.newText,
             };
-
-
         default:
             return state;
     }
@@ -38,8 +36,7 @@ export const playSearchedTrack = (uri) => ({
     
 export const showSearchedArtist = (id) => ({
     type: SHOW_SEARCHED_ARTIST,
-aristId: id,
-
+    aristId: id,
 })
 
 export default searchReducer;
