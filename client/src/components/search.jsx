@@ -1,4 +1,21 @@
+import React from 'react';
+import { useState } from 'react';
+import TrackSearchResult from './TrackSearchResult';
+import searchArtists from './searchArtist';
+
 function Search(props) {
+  const [tracks, setTrack] = useState([]);
+
+  const onSearchChange = (e) => {
+    const searchText = e.target.value;
+    props.onSearchChange(searchText);
+  };
+
+  function handlerSearchArtist(event) {
+    event.preventDefault();
+    searchArtists(props, setTrack);
+  }
+
   return (
     <div className="search">
       <div className="header">
@@ -25,13 +42,24 @@ function Search(props) {
           type="text"
           className="search__form-input"
           placeholder="Song..."
+          onChange={onSearchChange}
+          value={props.searchPage.newSearchText}
+          //onChange={(e) => setSearchKey(e.target.value)}
         />
+        <button type={'submit'} onClick={handlerSearchArtist} hidden>
+          Search
+        </button>
       </form>
       <div className="search__history">
-        <p className="search__history-item">Song name</p>
-        <p className="search__history-item">Song name</p>
-        <p className="search__history-item">Song name</p>
-        <p className="search__history-item">Song name</p>
+        {tracks.map((track) => (
+          <TrackSearchResult
+            track={track}
+            key={track.uri}
+            uri={track.uri}
+            //chooseTrack={chooseTrack}
+            setUri={props.setUri}
+          />
+        ))}
       </div>
       <button className="clearHistory">Clear history</button>
     </div>

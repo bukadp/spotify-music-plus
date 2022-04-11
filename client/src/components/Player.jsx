@@ -1,19 +1,28 @@
-import React from 'react'
-import SpotifyPlayer from 'react-spotify-web-playback'
+import React from 'react';
+import SpotifyPlayer from 'react-spotify-web-playback';
+import { useEffect, useState } from 'react';
 
 function Player(props) {
+  const [play, setPlay] = useState(false);
 
-    if (!props.accessToken) return null
-    return (
-        <div>
-            <SpotifyPlayer
-                token={props.accessToken}
-                showSaveIcon
-                //uris={props.trackUri ? [props.trackUri] : []}
-                uris={['spotify:artist:6HQYnRM4OzToCYPpVBInuU']}
-            />
-        </div>
-    )
+  useEffect(() => setPlay(true), [props.uri]);
+
+  if (!props.accessToken) return null;
+
+  return (
+    <div>
+      <SpotifyPlayer
+        token={props.accessToken}
+        showSaveIcon
+        uris={[props.uri]}
+        autoPlay={true}
+        callback={(state) => {
+          if (!state.isPlaying) setPlay(false);
+        }}
+        play={play}
+      />
+    </div>
+  );
 }
 
-export default Player
+export default Player;
