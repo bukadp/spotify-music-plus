@@ -1,20 +1,19 @@
 import React from 'react';
-import { useState } from 'react';
 import TrackSearchResult from './TrackSearchResult';
-import searchArtists from './searchArtist';
+import { useSelector, useDispatch } from 'react-redux';
+import { getData } from '../redux/asyncAtion';
 
 function Search(props) {
-  const [tracks, setTrack] = useState([]);
-
-  const onSearchChange = (e) => {
-    const searchText = e.target.value;
-    props.onSearchChange(searchText);
-  };
+  const store = useSelector((state) => state.tracks);
+  const dispatch = useDispatch();
 
   function handlerSearchArtist(event) {
-    event.preventDefault();
-    searchArtists(props, setTrack);
+    if (event.key === 'Enter') {
+      dispatch(getData(props, event.target.value));
+    }
   }
+
+  console.log(store);
 
   return (
     <div className="search">
@@ -37,26 +36,18 @@ function Search(props) {
           </svg>
         </div>
       </div>
-      <form className="search__form">
-        <input
-          type="text"
-          className="search__form-input"
-          placeholder="Song..."
-          onChange={onSearchChange}
-          value={props.searchPage.newSearchText}
-          //onChange={(e) => setSearchKey(e.target.value)}
-        />
-        <button type={'submit'} onClick={handlerSearchArtist} hidden>
-          Search
-        </button>
-      </form>
+      <input
+        type="text"
+        className="search__form-input"
+        placeholder="Song..."
+        onKeyDown={handlerSearchArtist}
+      />
       <div className="search__history">
-        {tracks.map((track) => (
+        {store.map((track) => (
           <TrackSearchResult
             track={track}
             key={track.uri}
             uri={track.uri}
-            //chooseTrack={chooseTrack}
             setUri={props.setUri}
           />
         ))}

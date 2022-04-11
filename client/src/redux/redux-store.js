@@ -1,11 +1,24 @@
-import {combineReducers, createStore} from "redux";
-import searchReducer from "./search-reducer"
+import { applyMiddleware, createStore } from "redux"
+import { composeWithDevTools } from 'redux-devtools-extension'
+import thunk from 'redux-thunk'
 
-let reducers = combineReducers({
-    searchPage: searchReducer,
+const initialState = {
+    tracks: [],
+}
 
-});
+export const SHOW_SEARCHED_TRACKS = 'showSearchedTracks';
 
-let store = createStore(reducers);
+const reducer = (state = initialState, action) => {
+    switch (action.type) {
+        case SHOW_SEARCHED_TRACKS:
+            return {
+                tracks: action.tracks,
+            }
+        default:
+            return state
+    }
+}
 
-export default store
+const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
+
+export default store;

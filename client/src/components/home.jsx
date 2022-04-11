@@ -1,3 +1,6 @@
+import { useSelector } from 'react-redux';
+import TrackSearchResult from './TrackSearchResult';
+
 function Home(props) {
   return (
     <div className="home">
@@ -24,10 +27,14 @@ function Home(props) {
         <div className="home__main-played">
           <div className="home__main-title">Recently Played</div>
           <div className="home__main-listTracks">
-            <div className="home__main-track">Track</div>
-            <div className="home__main-track">Track</div>
-            <div className="home__main-track">Track</div>
-            <div className="home__main-track">Track</div>
+            {/* {recentlyPlayedTracks.map((track) => (
+              <TrackSearchResult
+                track={track}
+                key={track.uri}
+                uri={track.uri}
+                setUri={props.setUri}
+              />
+            ))} */}
           </div>
         </div>
         <div className="home__main-liked">

@@ -1,12 +1,13 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import addRecentlyPlayedTrack from '../redux/search-reducer';
+import { useSelector } from 'react-redux';
 
 function TrackSearchResult(props) {
   function handlePlay() {
-    //props.chooseTrack(props.track);
     props.setUri(props.uri);
   }
 
-  
   return (
     <div
       style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}

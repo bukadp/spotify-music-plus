@@ -10,6 +10,7 @@ import { useState } from 'react';
 import useAuth from '../useAuth';
 import Player from './Player';
 import SearchContainer from './SearchContainer';
+import Search from './search';
 
 function Main({ code }) {
   const [tab, setTab] = useState('home');
@@ -18,11 +19,6 @@ function Main({ code }) {
   const [player, setPlayer] = useState(false);
   const [playList, setPlayList] = useState('');
   const [uri, setUri] = useState('');
-  // const tab = {
-  //   home: 'home',
-  //   search: 'search',
-  //   library: 'library',
-  // };
 
   const accessToken = useAuth(code);
 
@@ -76,13 +72,7 @@ function Main({ code }) {
   return (
     <div className="wrapper">
       {tab === 'home' && <Home showSign={showSignIn} />}
-      {tab === 'search' && (
-        <SearchContainer
-          showSign={showSignIn}
-          accessToken={accessToken}
-          setUri={setUri}
-        />
-      )}
+      {tab === 'search' && <Search accessToken={accessToken} />}
       {tab === 'library' && (
         <Library showSign={showSignIn} showPlayList={showPlayList} />
       )}
