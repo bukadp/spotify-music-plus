@@ -1,66 +1,27 @@
 import Home from './home';
 import Library from './library';
 import Navigation from './nav';
-import FullPlayer from './fullPlayer';
-import SignIn from './signIn';
-import SignUp from './signUp';
 import LikedTracks from './likedTracks';
 import PlayLists from './playlists';
-import { useState } from 'react';
 import useAuth from '../useAuth';
 import Player from './Player';
-import SearchContainer from './SearchContainer';
+import Search from './search';
+
+import { useState } from 'react';
 
 function Main({ code }) {
   const [tab, setTab] = useState('home');
-  const [signIn, setSignIn] = useState(false);
-  const [signUp, setSignUp] = useState(false);
-  const [player, setPlayer] = useState(false);
   const [playList, setPlayList] = useState('');
   const [uri, setUri] = useState('');
-  // const tab = {
-  //   home: 'home',
-  //   search: 'search',
-  //   library: 'library',
-  // };
+  const [togglePlaylist, setTogglePlaylist] = useState(false);
 
   const accessToken = useAuth(code);
 
   function changeTab(e) {
-    const parent = e.target.parentElement.parentElement;
-    for (let item of parent.children) {
-      item.classList.value = 'nav__item';
-    }
-    e.target.parentElement.classList.add('active');
-    setTab(e.target.parentElement.id);
+    const tab = e.target.id;
+    setTogglePlaylist(false);
     setPlayList('');
-  }
-
-  function closeSigns(e) {
-    e.target.remove();
-    setSignIn(false);
-    setSignUp(false);
-  }
-
-  function closeSignIn() {
-    setSignIn(!signIn);
-  }
-
-  function showSignIn() {
-    setSignIn(!signIn);
-  }
-
-  function closeSignUp() {
-    setSignUp(!signUp);
-  }
-
-  function showSignUp() {
-    setSignUp(!signUp);
-    setSignIn(!signIn);
-  }
-
-  function togglePlayer() {
-    setPlayer(!player);
+    setTab(tab);
   }
 
   function togglePlaysLists() {
@@ -75,32 +36,19 @@ function Main({ code }) {
 
   return (
     <div className="wrapper">
-      {tab === 'home' && <Home showSign={showSignIn} />}
-      {tab === 'search' && (
-        <SearchContainer
-          showSign={showSignIn}
-          accessToken={accessToken}
-          setUri={setUri}
-        />
-      )}
-      {tab === 'library' && (
-        <Library showSign={showSignIn} showPlayList={showPlayList} />
-      )}
-      {signIn && (
-        <SignIn
-          closeSigns={closeSigns}
-          closeSign={closeSignIn}
-          showSignUp={showSignUp}
-        />
-      )}
-      {signUp && <SignUp loseSigns={closeSigns} closeSign={closeSignUp} />}
-      {player && <FullPlayer togglePlayer={togglePlayer} />}
+      {tab === 'home' && <Home />}
+      {tab === 'search' && <Search accessToken={accessToken} setUri={setUri} />}
+      {tab === 'library' && <Library showPlayList={showPlayList} />}
       <Player accessToken={accessToken} uri={uri} />
       {playList === 'likedTrack' && (
         <LikedTracks togglePlaysLists={togglePlaysLists} />
       )}
       {playList === 'playList' && (
-        <PlayLists togglePlaysLists={togglePlaysLists} />
+        <PlayLists
+          togglePlaysLists={togglePlaysLists}
+          togglePlaylist={togglePlaylist}
+          setTogglePlaylist={setTogglePlaylist}
+        />
       )}
       <Navigation changeTab={changeTab} />
     </div>
