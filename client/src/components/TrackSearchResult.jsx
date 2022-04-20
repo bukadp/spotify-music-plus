@@ -1,11 +1,13 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import addRecentlyPlayedTrack from '../redux/search-reducer';
-import { useSelector } from 'react-redux';
+import addToRecentlyTracks from '../redux/actions';
 
 function TrackSearchResult(props) {
+  const dispatch = useDispatch();
+
   function handlePlay() {
-    props.setUri(props.uri);
+    props.setUri(props.track.uri);
+    dispatch(addToRecentlyTracks([props.track]));
   }
 
   return (
@@ -16,12 +18,26 @@ function TrackSearchResult(props) {
     >
       <img
         alt=""
-        src={props.track.albumUrl}
+        src={props.track.album.images[0].url}
         style={{ height: '64px', width: '64px' }}
       />
       <div className="ml-3" style={{ marginLeft: '10px', color: '#fff' }}>
-        <div>{props.track.title}</div>
-        <div className="text-muted">{props.track.artist}</div>
+        <div>{props.track.name}</div>
+        <div
+          className="text-muted"
+          style={{
+            maxWidth: '46vw',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            padding: '5px',
+            textOverflow: 'ellipsis',
+          }}
+        >
+          {props.track.artists.map((item) => {
+            // eslint-disable-next-line no-unused-expressions
+            return <span style={{ marginRight: '5px' }}>{item.name}</span>;
+          })}
+        </div>
       </div>
     </div>
   );

@@ -1,24 +1,16 @@
 import { applyMiddleware, createStore } from "redux"
 import { composeWithDevTools } from 'redux-devtools-extension'
+import { combineReducers } from "redux"
 import thunk from 'redux-thunk'
 
-const initialState = {
-    tracks: [],
-}
+import { listTracks } from "./reducers/listTracks"
+import { recentlyTracksReducer } from "./reducers/recentlyTracks"
 
-export const SHOW_SEARCHED_TRACKS = 'showSearchedTracks';
+const rootReducer = combineReducers({
+    tracks: listTracks,
+    recentlyTracks: recentlyTracksReducer,
+})
 
-const reducer = (state = initialState, action) => {
-    switch (action.type) {
-        case SHOW_SEARCHED_TRACKS:
-            return {
-                tracks: action.tracks,
-            }
-        default:
-            return state
-    }
-}
-
-const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
 export default store;

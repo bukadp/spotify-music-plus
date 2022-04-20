@@ -1,5 +1,9 @@
-import SHOW_SEARCHED_TRACKS from './redux-store';
+const showSearchedTracks = (tracks) => {
+  return { type: 'showSearchedTracks', playload: tracks };
+};
 
-export default function showSearchedTracks(tracks) {
-  return { type: SHOW_SEARCHED_TRACKS, tracks };
-}
+export const addToRecentlyTracks = (track) => {
+  return { type: 'addToRecentlyTracks', playload: track };
+};
+
+export default showSearchedTracks;
