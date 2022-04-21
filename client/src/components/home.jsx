@@ -1,3 +1,6 @@
+import React from 'react';
+//import RecentlyPlayedConteiner from './RecentlyPlayedConteiner'
+
 function Home(props) {
   return (
     <div className="home">

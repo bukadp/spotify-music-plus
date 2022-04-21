@@ -1,7 +1,7 @@
 const SET_SEARCH_TRACK = 'SET-SEARCH-TRACK';
 const UPDATE_NEW_SEARCH_TEXT = 'UPDATE-NEW-SEARCH-TEXT';
-const PLAY_SEARCHED_TRACK = 'PLAY-SEARCHED-TRACK';
-const SHOW_SEARCHED_ARTIST = 'SHOW_SEARCHED_ARTIST';
+// const PLAY_SEARCHED_TRACK = 'PLAY-SEARCHED-TRACK';
+// const SHOW_SEARCHED_ARTIST = 'SHOW_SEARCHED_ARTIST';
 
 const initialState = {
     tracks: [],
@@ -29,15 +29,17 @@ export const updateNewSearchTextAC = (text) => ({
     type: UPDATE_NEW_SEARCH_TEXT,
     newText: text,
 })
-export const playSearchedTrack = (uri) => ({
-    type: PLAY_SEARCHED_TRACK,
-        trackUri: uri,
-    })
+
+
+// export const playSearchedTrack = (uri) => ({
+//     type: PLAY_SEARCHED_TRACK,
+//         trackUri: uri,
+//     })
     
-export const showSearchedArtist = (id) => ({
-    type: SHOW_SEARCHED_ARTIST,
-    aristId: id,
-})
+// export const showSearchedArtist = (id) => ({
+//     type: SHOW_SEARCHED_ARTIST,
+//     aristId: id,
+// })
 
 export default searchReducer;
 

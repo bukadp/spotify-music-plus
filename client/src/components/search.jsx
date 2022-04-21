@@ -58,6 +58,9 @@ function Search(props) {
             uri={track.uri}
             //chooseTrack={chooseTrack}
             setUri={props.setUri}
+            onFavoriteListNameChange={props.onFavoriteListNameChange}
+            setFavoriteListName={props.setFavoriteListName}
+            favoritelistPage={props.favoritelistPage}
           />
         ))}
       </div>
