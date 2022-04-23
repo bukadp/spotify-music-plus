@@ -1,6 +1,12 @@
+
+import {
+  NavLink
+} from "react-router-dom";
+
 function Navigation(props) {
   return (
     <div className="nav">
+      <NavLink to="/">
       <button className="nav__item active" id="home" onClick={props.changeTab}>
         <svg
           width="46"
@@ -17,6 +23,9 @@ function Navigation(props) {
           />
         </svg>
       </button>
+      </NavLink>
+
+      <NavLink to="/search">
       <button className="nav__item" id="search" onClick={props.changeTab}>
         <svg
           width="46"
@@ -35,6 +44,9 @@ function Navigation(props) {
           />
         </svg>
       </button>
+      </NavLink>
+
+      <NavLink to="/library"> 
       <button className="nav__item" id="library" onClick={props.changeTab}>
         <svg
           width="46"
@@ -53,6 +65,7 @@ function Navigation(props) {
           />
         </svg>
       </button>
+      </NavLink>
     </div>
   );
 }
