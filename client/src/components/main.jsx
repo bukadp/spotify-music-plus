@@ -7,6 +7,12 @@ import useAuth from '../useAuth';
 import Player from './Player';
 import Search from './search';
 
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes
+} from "react-router-dom";
+
 import { useState } from 'react';
 
 function Main({ code }) {
@@ -35,23 +41,44 @@ function Main({ code }) {
   }
 
   return (
-    <div className="wrapper">
-      {tab === 'home' && <Home />}
-      {tab === 'search' && <Search accessToken={accessToken} setUri={setUri} />}
-      {tab === 'library' && <Library showPlayList={showPlayList} />}
-      <Player accessToken={accessToken} uri={uri} />
-      {playList === 'likedTrack' && (
-        <LikedTracks togglePlaysLists={togglePlaysLists} />
-      )}
-      {playList === 'playList' && (
-        <PlayLists
-          togglePlaysLists={togglePlaysLists}
-          togglePlaylist={togglePlaylist}
-          setTogglePlaylist={setTogglePlaylist}
-        />
-      )}
-      <Navigation changeTab={changeTab} />
-    </div>
+    <Router>
+      <div className="wrapper">
+
+        {/* {tab === 'home' && <Home />}
+         {tab === 'search' && <Search accessToken={accessToken} setUri={setUri} />}
+         {tab === 'library' && <Library showPlayList={showPlayList} />} */}
+
+        <Routes>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/search" element={<Search accessToken={accessToken} setUri={setUri} />}/>
+          <Route path="/library" element={<Library showPlayList={showPlayList} />}/>
+          <Route path="/myplaylists" element={<PlayLists
+            togglePlaysLists={togglePlaysLists}
+            togglePlaylist={togglePlaylist}
+            setTogglePlaylist={setTogglePlaylist}
+          />}/>
+
+<Route path="/likedtracks" element={<LikedTracks togglePlaysLists={togglePlaysLists} />}/>
+
+          </Routes>
+
+        <Player accessToken={accessToken} uri={uri} />
+
+        {/* {playList === 'likedTrack' && (
+          <LikedTracks togglePlaysLists={togglePlaysLists} />
+        )} */}
+        {/* {playList === 'playList' && (
+          <PlayLists
+            togglePlaysLists={togglePlaysLists}
+            togglePlaylist={togglePlaylist}
+            setTogglePlaylist={setTogglePlaylist}
+          />
+        )} */}
+        <Navigation changeTab={changeTab} />
+      </div>
+
+
+      </Router>
   );
 }
 

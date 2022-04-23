@@ -37,6 +37,7 @@ function CreatePlayListBlock(props) {
           />
         </svg>
       </div>
+      <span>{props.getNamePlaylistFromLocalStorage}</span>
     </div>
   );
 }

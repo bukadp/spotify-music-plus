@@ -9,6 +9,14 @@ function PlayLists(props) {
   const [playlist, setPlaylist] = useState([]);
   const [namePlaylist, setNamePlaylist] = useState('');
 
+  let keyLS = [];
+  
+  const getNamePlaylistFromLocalStorage = () =>{
+    for (let i = 0; i < localStorage.length; i++) {
+        keyLS.push(localStorage.key(i))      
+  }
+}
+
   function togglePopUp_MakeNamePlayList() {
     setOpenPopUp(!openPopUp);
   }
@@ -78,12 +86,22 @@ function PlayLists(props) {
               key={namePlaylist}
               deletePlayList={deletePlayList}
               enterPlaylist={enterPlaylist}
+              getNamePlaylistFromLocalStorage={getNamePlaylistFromLocalStorage}
             />
           ))}
         </div>
+        {getNamePlaylistFromLocalStorage()}
+        {
+        keyLS.map(key => {
+          return <li style={{color: '#FF7F50' }}>{key}</li>
+        })
+          
+        }
+        
       </div>
       {props.togglePlaylist && (
         <InnerPlaylist
+        
           namePlaylist={namePlaylist}
           closePlaylist={closePlaylist}
         />
