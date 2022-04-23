@@ -1,11 +1,16 @@
-import {combineReducers, createStore} from "redux";
-import searchReducer from "./search-reducer"
+import { applyMiddleware, createStore } from "redux"
+import { composeWithDevTools } from 'redux-devtools-extension'
+import { combineReducers } from "redux"
+import thunk from 'redux-thunk'
 
-let reducers = combineReducers({
-    searchPage: searchReducer,
+import { listTracks } from "./reducers/listTracks"
+import { recentlyTracksReducer } from "./reducers/recentlyTracks"
 
-});
+const rootReducer = combineReducers({
+    tracks: listTracks,
+    recentlyTracks: recentlyTracksReducer,
+})
 
-let store = createStore(reducers);
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
-export default store
+export default store;
