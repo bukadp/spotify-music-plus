@@ -28,6 +28,10 @@ button {
   height: 100vh;
 }
 
+a {
+  text-decoration: none;
+}
+
 .overlay {
   position: absolute;
   z-index: 1000;
