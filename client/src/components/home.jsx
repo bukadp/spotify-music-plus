@@ -1,8 +1,6 @@
 import { useSelector } from 'react-redux';
 import TrackSearchResult from './TrackSearchResult';
-import {
-  NavLink
-} from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 
 function Home(props) {
   const store = useSelector((state) => state.recentlyTracks.recentlyTracks);
@@ -22,9 +20,8 @@ function Home(props) {
           </div>
         </div>
         <div className="home__main-liked">
-        
-        <NavLink to="/likedtracks">
-          <div className="home__main-title">Liked Tracks</div>
+          <NavLink to="/likedtracks">
+            <div className="home__main-title">Liked Tracks</div>
           </NavLink>
 
           <div className="home__main-listTracks">

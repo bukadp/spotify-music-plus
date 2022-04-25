@@ -1,9 +1,15 @@
 import React from 'react';
-import TrackSearchResult from './TrackSearchResult';
 import { useSelector, useDispatch } from 'react-redux';
 import { getData } from '../redux/asyncAtion';
+import { useState } from 'react';
+
+import TrackSearchResult from './TrackSearchResult';
+import AddTrackToPlaylist from './addTrackToPlaylist';
 
 function Search(props) {
+  const [toggleCom_addTrackToPlaylist, setToggleCom_addTrackToPlaylist] =
+    useState(false);
+
   const store = useSelector((state) => state.tracks.tracks);
   const dispatch = useDispatch();
 
@@ -13,7 +19,9 @@ function Search(props) {
     }
   }
 
-  console.log(store);
+  function savePlaylist() {
+    setToggleCom_addTrackToPlaylist(false);
+  }
 
   return (
     <div className="search">
@@ -28,9 +36,16 @@ function Search(props) {
       />
       <div className="search__history">
         {store.map((track) => (
-          <TrackSearchResult track={track} setUri={props.setUri} />
+          <TrackSearchResult
+            track={track}
+            setUri={props.setUri}
+            setToggleCom_addTrackToPlaylist={setToggleCom_addTrackToPlaylist}
+          />
         ))}
       </div>
+      {toggleCom_addTrackToPlaylist && (
+        <AddTrackToPlaylist savePlaylist={savePlaylist} />
+      )}
     </div>
   );
 }

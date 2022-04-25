@@ -3,7 +3,6 @@ const defaultName = {
 };
 
 export const recentlyTracksReducer = (state = defaultName, action) => {
-  console.log(action);
   switch (action.type) {
     case 'addToRecentlyTracks':
       return {
