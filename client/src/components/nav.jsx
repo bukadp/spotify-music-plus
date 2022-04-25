@@ -1,7 +1,12 @@
 function Navigation(props) {
   return (
     <div className="nav">
-      <button className="nav__item active" id="home" onClick={props.changeTab}>
+      <button
+        className="nav__item"
+        id="home"
+        data-active={props.currentTab === 'home' ? 'active' : ' '}
+        onClick={props.changeTab}
+      >
         <svg
           width="46"
           height="48"
@@ -17,7 +22,12 @@ function Navigation(props) {
           />
         </svg>
       </button>
-      <button className="nav__item" id="search" onClick={props.changeTab}>
+      <button
+        className="nav__item"
+        id="search"
+        data-active={props.currentTab === 'search' ? 'active' : ' '}
+        onClick={props.changeTab}
+      >
         <svg
           width="46"
           height="48"
@@ -35,7 +45,12 @@ function Navigation(props) {
           />
         </svg>
       </button>
-      <button className="nav__item" id="library" onClick={props.changeTab}>
+      <button
+        className="nav__item"
+        id="library"
+        data-active={props.currentTab === 'library' ? 'active' : ' '}
+        onClick={props.changeTab}
+      >
         <svg
           width="46"
           height="48"

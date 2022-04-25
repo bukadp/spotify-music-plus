@@ -62,7 +62,7 @@ button {
   transform: scale(1.1);
 }
 
-.nav__item.active svg path {
+.nav__item[data-active='active'] svg path {
   fill: #fff;
 }
 
@@ -133,6 +133,21 @@ button {
 
 .search {
   padding: 3vh 6vw 0;
+  position: relative;
+}
+
+.search__history-more {
+  position: absolute;
+  right: 40px;
+  min-width: 36vw;
+  z-index: 10;
+  background: #000;
+  border: 1px solid #fff;
+  border-radius: 15px;
+}
+
+.search__history-more_item {
+  display: flex;
 }
 
 .search__form {
@@ -238,6 +253,11 @@ button {
 
 .playListBlock {
   position: relative;
+}
+
+.playListBlock__inner {
+  display: flex;
+  width: 100%;
 }
 
 .playListBlock:not(:first-child) {
@@ -424,6 +444,7 @@ button {
   position: absolute;
   left: 0;
   bottom: 53px;
+  z-index: 100;
 }
 
 .rswp__active._InfoRSWP.__mvqn38 {
@@ -581,3 +602,35 @@ button {
 .innerPlaylist-top__title::first-letter {
   text-transform: uppercase;
 }
+
+/* === Inner Playlist === */
+
+/* === AddTrackToPlaylist === */
+
+.addTrackToPlaylist {
+  position: absolute;
+  background: #000;
+  height: 77vh;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.addTrackToPlaylist__top {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.addTrackToPlaylist__top-title {
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.addTrackToPlaylist__inner {
+  padding: 3vh 6vw 0;
+}
+
+/* === AddTrackToPlaylist === */

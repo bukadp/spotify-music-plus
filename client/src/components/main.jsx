@@ -50,7 +50,7 @@ function Main({ code }) {
           setTogglePlaylist={setTogglePlaylist}
         />
       )}
-      <Navigation changeTab={changeTab} />
+      <Navigation changeTab={changeTab} currentTab={tab} />
     </div>
   );
 }

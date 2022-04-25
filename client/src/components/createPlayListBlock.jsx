@@ -2,18 +2,22 @@ function CreatePlayListBlock(props) {
   return (
     <div
       className="playListBlock"
-      onClick={() => props.enterPlaylist(props.namePlaylist)}
       style={{ display: 'flex', alignItems: 'center', color: '#fff' }}
     >
       <div
-        className="playListBlock__img"
-        style={{ width: '85px', height: '85px', background: '#fff' }}
+        className="playListBlock__inner"
+        onClick={() => props.enterPlaylist(props.namePlaylist)}
       >
-        <img src="" alt="imgPlayList" />
-      </div>
-      <div className="playListBlock__info" style={{ marginLeft: '15px' }}>
-        <div className="playListBlock__info-name">{props.namePlaylist}</div>
-        <div className="playListBlock__info-length">14 tracks</div>
+        <div
+          className="playListBlock__img"
+          style={{ width: '85px', height: '85px', background: '#fff' }}
+        >
+          <img src="" alt="imgPlayList" />
+        </div>
+        <div className="playListBlock__info" style={{ marginLeft: '15px' }}>
+          <div className="playListBlock__info-name">{props.namePlaylist}</div>
+          <div className="playListBlock__info-length">14 tracks</div>
+        </div>
       </div>
       <div
         className="playListBlock__delete"
