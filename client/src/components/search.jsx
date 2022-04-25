@@ -13,8 +13,6 @@ function Search(props) {
     }
   }
 
-  console.log(store);
-
   return (
     <div className="search">
       <div className="header">
