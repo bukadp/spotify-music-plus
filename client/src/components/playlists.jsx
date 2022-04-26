@@ -22,14 +22,8 @@ function PlayLists(props) {
 
   const lenthListsOfLocalStorage = (keyLS) => {
 
-      JSON.parse(localStorage.getItem(keyLS))
+    JSON.parse(localStorage.getItem(keyLS))
   }
-  // const lenthListsOfLocalStorage = (keyLS) => {
-  //   for (let i = 0; i < localStorage.length; i++) {
-
-  //     JSON.parse(localStorage.getItem(i).length)
-  // }
-  // }
 
   function togglePopUp_MakeNamePlayList() {
     setOpenPopUp(!openPopUp);
@@ -93,34 +87,21 @@ function PlayLists(props) {
         >
           Add new playlist
         </button>
-        {/* <div className="playLists__list">
-          {playlist.map((namePlaylist) => (
-            <CreatePlayListBlock
-              namePlaylist={namePlaylist}
-              id={namePlaylist}
-              key={namePlaylist}
-              deletePlayList={deletePlayList}
-              enterPlaylist={enterPlaylist}
-              //getNamePlaylistFromLocalStorage={getNamePlaylistFromLocalStorage}
-              length={() => { JSON.parse(localStorage.getItem(props.namePlaylist)) }}
-            />
-          ))}
-        </div> */}<div className="playLists__list">
-        {getNamePlaylistFromLocalStorage()}
-        {
-          keysFromLocalStorage.map((key) => (
-            <CreatePlayListBlock
-              namePlaylist={key}
-              id={key}
-              key={key}
-              deletePlayList={deletePlayList}
-              enterPlaylist={enterPlaylist}
-              //length={()=>{JSON.parse(localStorage.getItem(key)) }}
-              length={lenthListsOfLocalStorage}
-              
-            />
-          ))}
-          </div>
+        <div className="playLists__list">
+          {getNamePlaylistFromLocalStorage()}
+          {
+            keysFromLocalStorage.map((key) => (
+              <CreatePlayListBlock
+                namePlaylist={key}
+                id={key}
+                key={key}
+                deletePlayList={deletePlayList}
+                enterPlaylist={enterPlaylist}
+                length={lenthListsOfLocalStorage}
+
+              />
+            ))}
+        </div>
       </div>
       {props.togglePlaylist && (
         <InnerPlaylist

@@ -7,6 +7,12 @@ function MakeNamePopUp(props) {
     e.preventDefault();
     localStorage.setItem(key, []);
 
+    const isChecked = () => props.playlist.includes(key);
+
+        if (isChecked()) {
+          alert('Уже есть плейлист с таким именем');
+          return;
+        }
 
     props.setPlaylist([...props.playlist, key]);
     e.target.value = '';
@@ -69,10 +75,8 @@ const onChangeButton = (e) => {
               <input
                 type="text"
                 placeholder="Enter playlist name..."
-              //onKeyDown={setNamePlayList}
               value={key}
               onChange={onChangeButton}
-              //onSubmit={setNamePlayList}
               />
             </form>
           </div>
