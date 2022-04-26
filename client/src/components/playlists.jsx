@@ -9,12 +9,35 @@ function PlayLists(props) {
   const [playlist, setPlaylist] = useState([]);
   const [namePlaylist, setNamePlaylist] = useState('');
 
+
+  let keysFromLocalStorage = [];
+
+  const getNamePlaylistFromLocalStorage = () => {
+    for (let i = 0; i < localStorage.length; i++) {
+      keysFromLocalStorage.push(localStorage.key(i))
+
+    }
+  }
+
+
+  const lenthListsOfLocalStorage = (keyLS) => {
+
+      JSON.parse(localStorage.getItem(keyLS))
+  }
+  // const lenthListsOfLocalStorage = (keyLS) => {
+  //   for (let i = 0; i < localStorage.length; i++) {
+
+  //     JSON.parse(localStorage.getItem(i).length)
+  // }
+  // }
+
   function togglePopUp_MakeNamePlayList() {
     setOpenPopUp(!openPopUp);
   }
 
   function deletePlayList(e) {
     setPlaylist(playlist.filter((item) => item !== e.target.id));
+    localStorage.removeItem(e.target.id);
   }
 
   function enterPlaylist(namePlaylist) {
@@ -70,7 +93,7 @@ function PlayLists(props) {
         >
           Add new playlist
         </button>
-        <div className="playLists__list">
+        {/* <div className="playLists__list">
           {playlist.map((namePlaylist) => (
             <CreatePlayListBlock
               namePlaylist={namePlaylist}
@@ -78,9 +101,26 @@ function PlayLists(props) {
               key={namePlaylist}
               deletePlayList={deletePlayList}
               enterPlaylist={enterPlaylist}
+              //getNamePlaylistFromLocalStorage={getNamePlaylistFromLocalStorage}
+              length={() => { JSON.parse(localStorage.getItem(props.namePlaylist)) }}
             />
           ))}
-        </div>
+        </div> */}<div className="playLists__list">
+        {getNamePlaylistFromLocalStorage()}
+        {
+          keysFromLocalStorage.map((key) => (
+            <CreatePlayListBlock
+              namePlaylist={key}
+              id={key}
+              key={key}
+              deletePlayList={deletePlayList}
+              enterPlaylist={enterPlaylist}
+              //length={()=>{JSON.parse(localStorage.getItem(key)) }}
+              length={lenthListsOfLocalStorage}
+              
+            />
+          ))}
+          </div>
       </div>
       {props.togglePlaylist && (
         <InnerPlaylist
