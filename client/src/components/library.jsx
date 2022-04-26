@@ -1,7 +1,4 @@
-
-import {
-  NavLink
-} from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 
 function Library(props) {
   return (
@@ -11,13 +8,8 @@ function Library(props) {
         <div className="header-title">Library</div>
       </div>
       <div className="library__playlists">
-
         <NavLink to="/likedtracks">
-          <div
-            className="library__playlists-item"
-            id="likedTrack"
-            onClick={props.showPlayList}
-          >
+          <div className="library__playlists-item" id="likedTrack">
             <p id="likedTrack">Liked tracks</p>
             <button>
               <svg
@@ -40,11 +32,7 @@ function Library(props) {
         </NavLink>
 
         <NavLink to="/myplaylists">
-          <div
-            className="library__playlists-item"
-            id="playList"
-            onClick={props.showPlayList}
-          >
+          <div className="library__playlists-item" id="playList">
             <p id="playList">Playlists</p>
             <button>
               <svg
@@ -65,7 +53,6 @@ function Library(props) {
             </button>
           </div>
         </NavLink>
-
       </div>
       <div className="library__listeningHistory">
         <div className="library__listeningHistory-title">Listening history</div>

@@ -3,7 +3,6 @@ const defaultName = {
 };
 
 export const listTracks = (state = defaultName, action) => {
-  console.log(action);
   switch (action.type) {
     case 'showSearchedTracks':
       return {
