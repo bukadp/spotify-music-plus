@@ -23,23 +23,6 @@ const onChangeButton = (e) => {
   setKey(e.target.value)
 }
 
-  // function setNamePlayList(e) {
-  //   if (
-  //     e.target.classList.value === 'popUpMakeName-top__save' ||
-  //     e.key === 'Enter'
-  //   ) {
-  //     const isChecked = () => props.playlist.includes(e.target.value);
-
-  //     if (isChecked()) {
-  //       alert('Уже есть плейлист с таким именем');
-  //       return;
-  //     }
-
-  //     props.setPlaylist([...props.playlist, e.target.value]);
-  //     e.target.value = '';
-  //     props.setOpenPopUp(false);
-  //   }
-  // }
 
   return (
     <div className="popUpMakeName">
