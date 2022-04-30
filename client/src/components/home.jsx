@@ -1,9 +1,31 @@
-import { useSelector } from 'react-redux';
-import TrackSearchResult from './TrackSearchResult';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
+import HomePageTracksResult from './HomePageTracksResult';
+import addToRecentlyTracks from '../redux/act';
+
 function Home(props) {
+  const dispatch = useDispatch();
   const store = useSelector((state) => state.recentlyTracks.recentlyTracks);
+
+  console.log(new Set(store));
+
+  useEffect(() => {
+    const savedRecentlyTracks = new Set(
+      JSON.parse(localStorage.getItem('recentlyTracks'))
+    );
+
+    console.log(savedRecentlyTracks);
+
+    savedRecentlyTracks.forEach((track) => {
+      dispatch(addToRecentlyTracks(track));
+    });
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('recentlyTracks', JSON.stringify(store));
+  }, [store]);
 
   return (
     <div className="home">
@@ -15,7 +37,11 @@ function Home(props) {
           <div className="home__main-title">Recently Played</div>
           <div className="home__main-listTracks">
             {store.map((track) => (
-              <TrackSearchResult track={track} setUri={props.setUri} />
+              <HomePageTracksResult
+                track={track}
+                key={track.name}
+                setUri={props.setUri}
+              />
             ))}
           </div>
         </div>
@@ -23,10 +49,7 @@ function Home(props) {
           <NavLink to="/likedtracks">
             <div className="home__main-title">Liked Tracks</div>
           </NavLink>
-
-          <div className="home__main-listTracks">
-            <div className="home__main-track">Track</div>
-          </div>
+          <div className="home__main-listTracks"></div>
         </div>
       </div>
     </div>
