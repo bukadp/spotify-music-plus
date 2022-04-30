@@ -1,5 +1,4 @@
 function More(props) {
-  // console.log(typeof props.setToggleCom_addTrackToPlaylist);
   return (
     <div className="search__history-more">
       <ul
