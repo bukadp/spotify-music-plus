@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="cdf2fa45-8bb2-4cb9-88c0-955ef850077b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/client/src/components/TrackSearchResult.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/TrackSearchResult.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/addTrackToPlaylist.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/addTrackToPlaylist.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/createPlayListBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/createPlayListBlock.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/innerPlaylist.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/innerPlaylist.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/more.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/more.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/playlists.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/playlists.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/search.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/search.jsx" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="28Qp3RpuCVC1Y1lXztHGCHAnp7w" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cdf2fa45-8bb2-4cb9-88c0-955ef850077b" name="Changes" comment="" />
+      <created>1651158465034</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1651158465034</updated>
+      <workItem from="1651158469191" duration="5000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

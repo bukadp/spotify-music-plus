@@ -31,7 +31,7 @@ function More(props) {
             />
           </svg>
         </li>
-      </ul>
+      </ul>      
     </div>
   );
 }

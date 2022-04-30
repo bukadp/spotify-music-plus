@@ -11,13 +11,12 @@ function CreatePlayListBlock(props) {
         <div
           className="playListBlock__img"
           style={{ width: '85px', height: '85px', background: '#fff' }}
-        >
-          <img src="" alt="imgPlayList" />
-        </div>
-        <div className="playListBlock__info" style={{ marginLeft: '15px' }}>
-          <div className="playListBlock__info-name">{props.namePlaylist}</div>
-          <div className="playListBlock__info-length">14 tracks</div>
-        </div>
+        ></div>
+        <img src="" alt="imgPlayList" />
+      
+      <div className="playListBlock__info" style={{ marginLeft: '15px' }}>
+        <div className="playListBlock__info-name">{props.namePlaylist}</div>
+        <div className="playListBlock__info-length">{localStorage.getItem(props.namePlaylist) ? JSON.parse(localStorage.getItem(props.namePlaylist)).length : 0} tracks</div>
       </div>
       <div
         className="playListBlock__delete"
@@ -41,6 +40,7 @@ function CreatePlayListBlock(props) {
           />
         </svg>
       </div>
+    </div>
     </div>
   );
 }

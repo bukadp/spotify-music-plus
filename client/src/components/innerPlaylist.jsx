@@ -25,7 +25,7 @@ function InnerPlaylist(props) {
             </svg>
           </div>
         </div>
-      </div>
+      </div>   
     </div>
   );
 }

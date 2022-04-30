@@ -1,7 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
 import addToRecentlyTracks from '../redux/act';
 import More from './more';
 import AddTrackToPlaylist from './addTrackToPlaylist';
@@ -10,6 +9,12 @@ function TrackSearchResult(props) {
   const store = useSelector((state) => state.recentlyTracks.recentlyTracks);
   const dispatch = useDispatch();
   const [toggleMore, setToggleMore] = useState(false);
+  const [toggleCom_addTrackToPlaylist, setToggleCom_addTrackToPlaylist] =
+    useState(false);
+
+  function savePlaylist() {
+    setToggleCom_addTrackToPlaylist(false);
+  }
 
   function handlePlay() {
     props.setUri(props.track.uri);
@@ -50,7 +55,6 @@ function TrackSearchResult(props) {
             }}
           >
             {props.track.artists.map((item) => {
-              // eslint-disable-next-line no-unused-expressions
               return <span style={{ marginRight: '5px' }}>{item.name}</span>;
             })}
           </div>
@@ -79,15 +83,20 @@ function TrackSearchResult(props) {
         </button>
         {toggleMore && (
           <More
-            setToggleCom_addTrackToPlaylist={
-              props.setToggleCom_addTrackToPlaylist
-            }
+            setToggleCom_addTrackToPlaylist={setToggleCom_addTrackToPlaylist}
+            trackInfo={props.track}
+            key={props.track.id}
+          />
+        )}
+        {toggleCom_addTrackToPlaylist && (
+          <AddTrackToPlaylist
+            savePlaylist={savePlaylist}
+            trackInfo={props.track}
+            key={props.track.id}
+            setToggleCom_addTrackToPlaylist={setToggleCom_addTrackToPlaylist}
           />
         )}
       </div>
-      {props.toggleCom_addTrackToPlaylist && (
-        <AddTrackToPlaylist savePlaylist={props.savePlaylist} />
-      )}
     </div>
   );
 }

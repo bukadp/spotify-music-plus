@@ -1,21 +1,28 @@
+import { useState } from 'react';
+
 function MakeNamePopUp(props) {
+  const [key, setKey] = useState('')
+
   function setNamePlayList(e) {
-    if (
-      e.target.classList.value === 'popUpMakeName-top__save' ||
-      e.key === 'Enter'
-    ) {
-      const isChecked = () => props.playlist.includes(e.target.value);
+    e.preventDefault();
+    localStorage.setItem(key, []);
 
-      if (isChecked()) {
-        alert('Уже есть плейлист с таким именем');
-        return;
-      }
+    const isChecked = () => props.playlist.includes(key);
 
-      props.setPlaylist([...props.playlist, e.target.value]);
-      e.target.value = '';
-      props.setOpenPopUp(false);
-    }
+        if (isChecked()) {
+          alert('Уже есть плейлист с таким именем');
+          return;
+        }
+
+    props.setPlaylist([...props.playlist, key]);
+    e.target.value = '';
+    props.setOpenPopUp(false);
   }
+
+const onChangeButton = (e) => {
+  setKey(e.target.value)
+}
+
 
   return (
     <div className="popUpMakeName">
@@ -47,15 +54,19 @@ function MakeNamePopUp(props) {
         </div>
         <div className="popUpMakeName-main">
           <div className="popUpMakeName-main__input">
-            <input
-              type="text"
-              placeholder="Enter playlist name..."
-              onKeyDown={setNamePlayList}
-            />
+            <form onSubmit={setNamePlayList}>
+              <input
+                type="text"
+                placeholder="Enter playlist name..."
+              value={key}
+              onChange={onChangeButton}
+              />
+            </form>
           </div>
+
         </div>
       </div>
-    </div>
+    </div >
   );
 }
 
