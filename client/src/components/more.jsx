@@ -1,5 +1,4 @@
 function More(props) {
-  console.log(props)
   return (
     <div className="search__history-more">
       <ul

@@ -92,7 +92,9 @@ function TrackSearchResult(props) {
           <AddTrackToPlaylist
             savePlaylist={savePlaylist}
             trackInfo={props.track}
-            key={props.track.id} />
+            key={props.track.id}
+            setToggleCom_addTrackToPlaylist={setToggleCom_addTrackToPlaylist}
+          />
         )}
       </div>
     </div>
