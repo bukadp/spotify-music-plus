@@ -1,6 +1,11 @@
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
+import LibraryPageTracksResult from './LibraryPageTracksResult';
 
 function Library(props) {
+  const store = useSelector((state) => state.recentlyTracks.recentlyTracks);
+
   return (
     <div className="library">
       {' '}
@@ -57,30 +62,9 @@ function Library(props) {
       <div className="library__listeningHistory">
         <div className="library__listeningHistory-title">Listening history</div>
         <div className="library__listeningHistory-list">
-          <div className="listTracks__track">
-            <div className="listTracks__track-img">Track</div>
-            <div className="listTracks__track-info">
-              <p className="listTracks__track-name">name</p>
-              <p className="listTracks__track-player">player</p>
-              <p className="listTracks__track-duration">time duration</p>
-            </div>
-          </div>
-          <div className="listTracks__track">
-            <div className="listTracks__track-img">Track</div>
-            <div className="listTracks__track-info">
-              <p className="listTracks__track-name">name</p>
-              <p className="listTracks__track-player">player</p>
-              <p className="listTracks__track-duration">time duration</p>
-            </div>
-          </div>
-          <div className="listTracks__track">
-            <div className="listTracks__track-img">Track</div>
-            <div className="listTracks__track-info">
-              <p className="listTracks__track-name">name</p>
-              <p className="listTracks__track-player">player</p>
-              <p className="listTracks__track-duration">time duration</p>
-            </div>
-          </div>
+          {store.map((track) => (
+            <LibraryPageTracksResult track={track} setUri={props.setUri} />
+          ))}
         </div>
       </div>
     </div>

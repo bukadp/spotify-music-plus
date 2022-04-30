@@ -1,6 +1,4 @@
 function InnerPlaylist(props) {
-
-  console.log(props)
   return (
     <div className="innerPlaylist">
       <div className="innerPlaylist__inner">

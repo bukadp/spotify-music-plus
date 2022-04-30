@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-
 import MakeNamePopUp from './popUp_makeName_playList';
 import Overlay from './overlay';
 import CreatePlayListBlock from './createPlayListBlock';
@@ -11,19 +10,15 @@ function PlayLists(props) {
   const [playlist, setPlaylist] = useState([]);
   const [namePlaylist, setNamePlaylist] = useState('');
 
-
   let keysFromLocalStorage = [];
 
   const getNamePlaylistFromLocalStorage = () => {
     for (let i = 0; i < localStorage.length; i++) {
       keysFromLocalStorage.push(localStorage.key(i))
-
     }
   }
 
-
   const lenthListsOfLocalStorage = (keyLS) => {
-
     JSON.parse(localStorage.getItem(keyLS))
   }
 
@@ -99,24 +94,22 @@ function PlayLists(props) {
                 deletePlayList={deletePlayList}
                 enterPlaylist={enterPlaylist}
                 length={lenthListsOfLocalStorage}
-
               />
             ))}
         </div>
       </div>
       {getNamePlaylistFromLocalStorage()}
       {props.togglePlaylist && (
-                JSON.parse(localStorage.getItem(keysFromLocalStorage)).map((tracks) => (
-                  <InnerPlaylist
-                    namePlaylist={keysFromLocalStorage}
-                    trackAlbum={tracks.trackAlbum}
-                    trackArtist={tracks.trackArtist}
-                    trackTitle={tracks.trackTitle}
-                    trackUri={tracks.trackUri}
-        
-                    closePlaylist={closePlaylist}
-                  />
-                )))}
+        JSON.parse(localStorage.getItem(keysFromLocalStorage)).map((tracks) => (
+          <InnerPlaylist
+            namePlaylist={keysFromLocalStorage}
+            trackAlbum={tracks.trackAlbum}
+            trackArtist={tracks.trackArtist}
+            trackTitle={tracks.trackTitle}
+            trackUri={tracks.trackUri}
+            closePlaylist={closePlaylist}
+          />
+        )))}
     </div>
   );
 }

@@ -13,7 +13,6 @@ function Player(props) {
     <div>
       <SpotifyPlayer
         token={props.accessToken}
-        showSaveIcon
         uris={[props.uri]}
         autoPlay={true}
         callback={(state) => {

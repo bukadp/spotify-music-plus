@@ -28,7 +28,7 @@ function Main({ code }) {
     <Router>
       <div className="wrapper">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home setUri={setUri} />} />
           <Route
             path="/search"
             element={<Search accessToken={accessToken} setUri={setUri} />}

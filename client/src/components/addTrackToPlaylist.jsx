@@ -1,20 +1,21 @@
 function AddTrackToPlaylist(props) {
-console.log(props)
-  let keysFromLocalStorage = [];
-  const getNamePlaylistFromLocalStorage = () => {
 
-    for (let i = 0; i < localStorage.length; i++) {
-      keysFromLocalStorage.push(localStorage.key(i))
-    }
+const addToPlayList = () => {
+  let trackInfoList = localStorage.getItem("playListTracks")
+    ? JSON.parse(localStorage.getItem("playListTracks"))
+    : []
+
+  let trackInfo = {
+    trackAlbum: props.track.albumUrl,
+    trackTitle: props.track.title,
+    trackUri: props.track.uri,
+    trackArtist: props.track.artist,
   }
 
-const addTrackToPlayList = (playListName, track) => {
-  let {trackAlbum, trackArtist, trackTitle, trackUri} = {...track}
-  let currentTracks = JSON.parse(localStorage.getItem(playListName))
-  currentTracks.push({trackAlbum, trackArtist, trackTitle, trackUri})
-  //localStorage.setItem(playListName, currentTracks)
-  }
+  trackInfoList.map(x => x.trackUri).find(x => x === trackInfo.trackUri) ? alert(`This track already in your track list, ${trackInfo.trackTitle}`) : trackInfoList.push(trackInfo)
 
+  localStorage.setItem("playListTracks", JSON.stringify(trackInfoList));
+}
 
   return (
     <div className="addTrackToPlaylist">
@@ -23,25 +24,12 @@ const addTrackToPlayList = (playListName, track) => {
           <div className="addTrackToPlaylist__top-title">Playlists</div>
           <div
             className="addTrackToPlaylist__top-button"
-            onClick={props.savePlaylist}
+            onClick={addToPlayList}
           >
             Save
           </div>
         </div>
         <div className="addTrackToPlaylist__list">
-
-          {/* <span style={{color: 'white'}}>rerreerererererdfwdf sfdsdf sdf sdf sd fsd f sdf sd fsd fsd fsd fsdf
-          </span> */}
-          {getNamePlaylistFromLocalStorage()}
-          {
-            keysFromLocalStorage.map(key => {
-              return <li style={{ color: 'white', cursor: 'pointer' }}
-              onClick={addTrackToPlayList(key, props.track)}
-              >{key}</li>
-            }
-
-            )
-          }
         </div>
       </div>
     </div>
