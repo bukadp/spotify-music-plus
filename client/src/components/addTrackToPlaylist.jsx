@@ -1,4 +1,21 @@
 function AddTrackToPlaylist(props) {
+console.log(props)
+  let keysFromLocalStorage = [];
+  const getNamePlaylistFromLocalStorage = () => {
+
+    for (let i = 0; i < localStorage.length; i++) {
+      keysFromLocalStorage.push(localStorage.key(i))
+    }
+  }
+
+const addTrackToPlayList = (playListName, track) => {
+  let {trackAlbum, trackArtist, trackTitle, trackUri} = {...track}
+  let currentTracks = JSON.parse(localStorage.getItem(playListName))
+  currentTracks.push({trackAlbum, trackArtist, trackTitle, trackUri})
+  //localStorage.setItem(playListName, currentTracks)
+  }
+
+
   return (
     <div className="addTrackToPlaylist">
       <div className="addTrackToPlaylist__inner">
@@ -12,8 +29,18 @@ function AddTrackToPlaylist(props) {
           </div>
         </div>
         <div className="addTrackToPlaylist__list">
+
+          {/* <span style={{color: 'white'}}>rerreerererererdfwdf sfdsdf sdf sdf sd fsd f sdf sd fsd fsd fsd fsdf
+          </span> */}
+          {getNamePlaylistFromLocalStorage()}
           {
-            // localStorage...
+            keysFromLocalStorage.map(key => {
+              return <li style={{ color: 'white', cursor: 'pointer' }}
+              onClick={addTrackToPlayList(key, props.track)}
+              >{key}</li>
+            }
+
+            )
           }
         </div>
       </div>

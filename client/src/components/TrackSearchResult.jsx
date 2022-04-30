@@ -6,6 +6,7 @@ import { useState } from 'react';
 import More from './more';
 
 function TrackSearchResult(props) {
+
   // const dispatch = useDispatch();
   const [toggleMore, setToggleMore] = useState(false);
 
@@ -75,8 +76,12 @@ function TrackSearchResult(props) {
           setToggleCom_addTrackToPlaylist={
             props.setToggleCom_addTrackToPlaylist
           }
+traks={props}
+
         />
       )}
+
+      
     </div>
   );
 }

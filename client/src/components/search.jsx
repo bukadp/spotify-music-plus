@@ -10,7 +10,7 @@ function Search(props) {
   const [toggleCom_addTrackToPlaylist, setToggleCom_addTrackToPlaylist] =
     useState(false);
 
-  const store = useSelector((state) => state.tracks.tracks);
+  const storedTracks = useSelector((state) => state.tracks.tracks);
   const dispatch = useDispatch();
 
   function handlerSearchArtist(event) {
@@ -35,7 +35,7 @@ function Search(props) {
         onKeyDown={handlerSearchArtist}
       />
       <div className="search__history">
-        {store.map((track) => (
+        {storedTracks.map((track) => (
           <TrackSearchResult
             track={track}
             setUri={props.setUri}
@@ -44,7 +44,11 @@ function Search(props) {
         ))}
       </div>
       {toggleCom_addTrackToPlaylist && (
-        <AddTrackToPlaylist savePlaylist={savePlaylist} />
+        <AddTrackToPlaylist 
+        savePlaylist={savePlaylist} 
+        
+        />
+
       )}
     </div>
   );

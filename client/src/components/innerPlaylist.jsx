@@ -1,4 +1,6 @@
 function InnerPlaylist(props) {
+
+  console.log(props)
   return (
     <div className="innerPlaylist">
       <div className="innerPlaylist__inner">
@@ -25,7 +27,7 @@ function InnerPlaylist(props) {
             </svg>
           </div>
         </div>
-      </div>
+      </div>   
     </div>
   );
 }

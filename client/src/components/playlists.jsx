@@ -104,12 +104,19 @@ function PlayLists(props) {
             ))}
         </div>
       </div>
+      {getNamePlaylistFromLocalStorage()}
       {props.togglePlaylist && (
-        <InnerPlaylist
-          namePlaylist={namePlaylist}
-          closePlaylist={closePlaylist}
-        />
-      )}
+                JSON.parse(localStorage.getItem(keysFromLocalStorage)).map((tracks) => (
+                  <InnerPlaylist
+                    namePlaylist={keysFromLocalStorage}
+                    trackAlbum={tracks.trackAlbum}
+                    trackArtist={tracks.trackArtist}
+                    trackTitle={tracks.trackTitle}
+                    trackUri={tracks.trackUri}
+        
+                    closePlaylist={closePlaylist}
+                  />
+                )))}
     </div>
   );
 }

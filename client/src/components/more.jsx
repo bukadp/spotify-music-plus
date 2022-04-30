@@ -1,5 +1,15 @@
+// import AddTrackToPlaylist from './addTrackToPlaylist';
+// import { useState } from 'react';
 function More(props) {
+  // const [toggleCom_addTrackToPlaylist, setToggleCom_addTrackToPlaylist] =
+  //   useState(false);
+
+  //   function savePlaylist() {
+  //     setToggleCom_addTrackToPlaylist(false);
+  //   }
+
   // console.log(typeof props.setToggleCom_addTrackToPlaylist);
+  console.log("more = ", props)
   return (
     <div className="search__history-more">
       <ul
@@ -33,6 +43,12 @@ function More(props) {
           </svg>
         </li>
       </ul>
+      {/* {toggleCom_addTrackToPlaylist && (
+        <AddTrackToPlaylist 
+        savePlaylist={savePlaylist} 
+        />
+      )} */}
+      
     </div>
   );
 }
